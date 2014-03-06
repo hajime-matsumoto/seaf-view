@@ -57,9 +57,9 @@ class View extends Environment implements EnvironmentAcceptableIF
     /**
      * エンジンの取得
      */
-    public function getEngine( )
+    public function getEngine( $name = self::DEFAULT_ENGINE )
     {
-        $engine = $this->get('engine', self::DEFAULT_ENGINE);
+        $engine = $this->get('engine', $name);
 
         foreach ($this->view_engine_namespace_list as $ns) {
             if (class_exists($class = $ns.'\\'.ucfirst($engine))) {
@@ -106,4 +106,5 @@ class EngineNotExist extends \Exception
         parent::__construct(sprintf('Viewエンジン %s は存在しません。', $name));
     }
 }
+
 /* vim: set expandtab ts=4 sw=4 sts=4: et*/
