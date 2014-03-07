@@ -16,6 +16,13 @@ use Seaf\Core\Environment\EnvironmentAcceptableIF;
 use Seaf\Core\Environment\Environment;
 use Seaf\View\View;
 
+
+if (!class_exists('\Twig_Loader_Filesystem')) {
+    require_once 'Twig/Autoloader.php';
+    \Twig_Autoloader::register();
+}
+
+
 /**
  * ビューエンジン For Twig
  */

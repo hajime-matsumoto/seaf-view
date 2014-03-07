@@ -22,6 +22,8 @@ class View extends Environment implements EnvironmentAcceptableIF
 {
     const DEFAULT_ENGINE = 'php';
 
+    private $defaultEngine = self::DEFAULT_ENGINE;
+
     /**
      * ViewEngineネームスペース
      *
@@ -52,6 +54,10 @@ class View extends Environment implements EnvironmentAcceptableIF
         }
         $this->viewParams[$name] = $value;
         return $this;
+    }
+
+    public function setDefaultEngine ($name) {
+        $this->defaultEngine = $name;
     }
 
     /**
@@ -95,7 +101,7 @@ class View extends Environment implements EnvironmentAcceptableIF
 
         $params = array_merge($this->viewParams, $params);
 
-        return $this->getEngine()->render($view_name, $params);
+        return $this->getEngine($this->defaultEngine)->render($view_name, $params);
     }
 }
 
